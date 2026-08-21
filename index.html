@@ -1,23 +1,1251 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+
+    <style>
+        /* 기본 리셋 및 폰트 설정 */
+        :root {
+            --primary-color: #0f766e;
+            --primary-light: #14b8a6;
+            --primary-dark: #115e59;
+            --secondary-color: #3b82f6;
+            --secondary-dark: #1d4ed8;
+            --accent-color: #6366f1;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-subtle: #f1f5f9;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-heading: #0f172a;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.85;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        /* 레이아웃 컨테이너 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header, nav, section, footer {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, #0f766e 0%, #1e3a8a 100%);
+            color: #ffffff;
+            padding: 60px 24px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header .badge {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.18);
+            color: #ccfbf1;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.35;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            max-width: 840px;
+            margin: 0 auto 30px auto;
+            color: #e2e8f0;
+            font-weight: 300;
+        }
+
+        /* 네비게이션 스타일 */
+        nav {
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        nav .nav-inner {
+            display: flex;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        nav a {
+            display: inline-block;
+            color: var(--text-muted);
+            padding: 16px 20px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a:focus {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            background-color: #f0fdfa;
+        }
+
+        /* 메인 콘텐츠 섹션 공통 */
+        section {
+            background: var(--bg-card);
+            margin-top: 35px;
+            margin-bottom: 35px;
+            padding: 45px 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-heading);
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 6px solid var(--primary-color);
+            line-height: 1.3;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 18px;
+            color: var(--text-main);
+            text-align: justify;
+            word-break: keep-all;
+        }
+
+        /* 그리드 및 카드 시스템 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+            background-color: #ffffff;
+        }
+
+        .info-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #ccfbf1;
+            padding-bottom: 8px;
+        }
+
+        .info-card p {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 0;
+        }
+
+        /* 테이블 스타일 */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 25px 0;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+            background-color: #ffffff;
+        }
+
+        caption {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            padding: 16px;
+            text-align: left;
+            background-color: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-heading);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f0fdfa;
+        }
+
+        .table-highlight {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* 데이터 시각화 바 차트 */
+        .chart-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .chart-bar-group {
+            margin-bottom: 20px;
+        }
+
+        .chart-label {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--text-heading);
+        }
+
+        .chart-progress-bg {
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            height: 18px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .chart-progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary-color));
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-progress-fill.secondary {
+            background: linear-gradient(90deg, #60a5fa, #2563eb);
+        }
+
+        .chart-progress-fill.accent {
+            background: linear-gradient(90deg, #a78bfa, #6366f1);
+        }
+
+        /* 폼 스타일 */
+        .form-wrapper {
+            background: linear-gradient(145deg, #f0fdfa 0%, #f8fafc 100%);
+            border: 2px solid #ccfbf1;
+            border-radius: var(--radius-lg);
+            padding: 35px;
+            margin: 30px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: var(--text-heading);
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: var(--radius-sm);
+            background-color: #ffffff;
+            font-size: 1rem;
+            color: var(--text-main);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+        }
+
+        .submit-btn {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 18px 24px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: var(--shadow-md);
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, #042f2e 100%);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* FAQ 아코디언/정의형 리스트 */
+        dl.faq-list {
+            margin: 25px 0;
+        }
+
+        dl.faq-list dt {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--text-heading);
+            background-color: var(--bg-subtle);
+            padding: 18px 24px;
+            border-radius: var(--radius-sm);
+            margin-top: 18px;
+            border-left: 4px solid var(--primary-color);
+            cursor: default;
+        }
+
+        dl.faq-list dd {
+            padding: 20px 24px;
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+            color: #334155;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        /* 외부 참조 링크 리스트 */
+        ul.reference-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
+        }
+
+        ul.reference-list li {
+            padding: 14px 18px;
+            background-color: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        ul.reference-list li a {
+            color: var(--secondary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        ul.reference-list li a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        ul.reference-list .ref-badge {
+            font-size: 0.8rem;
+            background-color: #e2e8f0;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* 텍스트 강조 및 인용 */
+        strong {
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background-color: #f0fdfa;
+            border-left: 4px solid var(--primary-light);
+            padding: 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            margin: 25px 0;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 60px 24px 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #94a3b8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 15px auto;
+        }
+
+        footer .footer-links {
+            margin-bottom: 25px;
+        }
+
+        footer .footer-links a {
+            color: #cbd5e1;
+            margin: 0 12px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer .footer-links a:hover {
+            color: #38bdf8;
+        }
+
+        /* 반응형 모바일 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.85rem;
+            }
+            section {
+                padding: 25px 18px;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            h2 {
+                font-size: 1.45rem;
+            }
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.85rem;
+            }
+            .form-wrapper {
+                padding: 20px;
+            }
+        }
+    </style>
+
+    <!-- Schema.org JSON-LD 구조화 데이터: FinancialService, MedicalBusiness, FAQPage, OfferCatalog, HowTo 결합 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FinancialService",
+          "@id": "https://insurance.reliabledone.com/#financialService",
+          "name": "대한민국 치아교정보험 전문 비교센터",
+          "url": "https://insurance.reliabledone.com/dental-orthodontics-guide",
+          "logo": "https://insurance.reliabledone.com/images/dental_logo.png",
+          "image": "https://insurance.reliabledone.com/images/orthodontic_insurance_hero.jpg",
+          "description": "2026년 최신 기준 치아교정보험 상품 비교, 부정교합 치료 특약, 연령대별 다이렉트 견적 및 사은품 혜택 분석을 제공하는 전문 금융 컨설팅 센터",
+          "telephone": "1588-0000",
+          "priceRange": "KRW 10,000 - 150,000",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "서울특별시 중구 세종대로 110",
+            "addressLocality": "서울특별시",
+            "addressRegion": "서울",
+            "postalCode": "04524",
+            "addressCountry": "KR"
+          },
+          "areaServed": "KR",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "2026년 치아교정보험 상품군",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "FinancialProduct",
+                  "name": "어린이 및 청소년 부정교합 치아교정보험 특약",
+                  "description": "만 18세 이하 부정교합(Angle 2급, 3급) 판정 시 치아교정 치료비 보장"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "FinancialProduct",
+                  "name": "성인 다이렉트 복합 치아교정보험",
+                  "description": "치주질환, 임플란트, 악교정 수술 및 비발치 투명교정 보장 연계 상품"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "FinancialProduct",
+                  "name": "무진단형 실속 치아보험 플랜",
+                  "description": "치과 검진 없이 온라인으로 간편 가입 가능한 보존/보철 및 교정 연계 특약"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "Article",
+          "@id": "https://insurance.reliabledone.com/#article",
+          "headline": "2026년 치아교정보험 완벽 비교 가이드 및 연령별 보장 견적 분석",
+          "inLanguage": "ko-KR",
+          "mainEntityOfPage": "https://insurance.reliabledone.com/dental-orthodontics-guide",
+          "datePublished": "2026-01-05T09:00:00+09:00",
+          "dateModified": "2026-02-15T14:30:00+09:00",
+          "author": {
+            "@type": "Organization",
+            "name": "금융보험정책연구분석팀"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "ReliableDone Insurance Index",
+            "url": "https://insurance.reliabledone.com"
+          },
+          "description": "부정교합 치료 목적의 치아교정보험 보장 범위, 국민건강보험 연계성, 메이저 보험사별 장단점 및 비용 분석"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://insurance.reliabledone.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "치아교정도 치아보험이나 실손의료보험으로 100% 보장받을 수 있나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "일반적인 미용 목적의 치아교정은 국민건강보험 및 표준 실손의료보험에서 비급여 항목으로 제외됩니다. 다만, 선천성 악안면 기형, 구순구개열, 혹은 악골 분쇄 골절 등 의학적 치료 목적의 심각한 부정교합(Angle 2급, 3급)의 경우 일부 특약 및 건강보험 급여 항목을 통해 보장을 받을 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "어린이 치아교정보험에 가입하기 가장 좋은 적정 연령은 언제인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "유치가 영구치로 교체되는 혼합치열기 이전인 만 4세부터 만 7세 사이가 가장 권장됩니다. 이 시기에는 턱 성장 유도 장치나 1차 예방교정 특약의 면책기간(통상 90일~180일)을 감안하여 선제적으로 가입하는 것이 유리합니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "치아교정보험 가입 시 면책기간과 감액기간은 어떻게 적용되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "보험 가입 후 90일 이내에는 질병으로 인한 치과 치료비가 지급되지 않는 면책기간이 적용되며, 1년 또는 2년 미만 치료 시 보험금의 50%만 지급되는 감액기간이 존재하므로 약관상 세부 조항을 반드시 계산하고 비교해야 합니다."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://insurance.reliabledone.com/#howto",
+          "name": "치아교정보험 가입 및 보험금 최적 청구 5단계 절차",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "position": 1,
+              "name": "구강 상태 검진 및 부정교합 등급 판정",
+              "text": "치과 교정과 전문의를 통해 정밀 파노라마 및 세팔로 X-ray를 촬영하고 Angle 분류법에 따른 부정교합 상태를 확인합니다."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 2,
+              "name": "온라인 다이렉트 비교 견적 및 특약 선택",
+              "text": "모바일 앱이나 전문 비교 사이트에서 면책기간, 감액기간, 보장 한도 금액을 확인 후 본인에게 적합한 최저가 상품을 설계합니다."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 3,
+              "name": "사전 고지의무 확인 및 전자청약 체결",
+              "text": "최근 5년 이내 충치, 치주염, 치아 상실 등 과거 진료 이력을 정확히 고지하고 가입을 확정합니다."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 4,
+              "name": "치료 계획 수립 및 교정 장치 부착",
+              "text": "정해진 면책기간이 경과한 후 치과에서 정식 치료 계획서를 발급받고 치료를 개시합니다."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 5,
+              "name": "치료 확인서 및 진료비 영수증 보험금 청구",
+              "text": "치과 치료 확인서, 질병분류코드(K07.2~K07.4 등), 세부영수증을 첨부하여 모바일 앱으로 3분 내 간편 청구를 진행합니다."
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+<header id="top">
+    <div class="container">
+        <span class="badge">2026년 최신 금융 및 치과 의료보험 가이드</span>
+        <h1>치아교정보험 가격 비교 및 연령별 맞춤 설계 가이드</h1>
+        <p>단순 미용을 넘어 저작 기능 개선을 위한 필수 의료 설계. 메이저 보험사별 부정교합 보장 특약, 면책기간 계산, 연령대별 다이렉트 최저가 견적을 객관적으로 분석해 드립니다.</p>
+        <a href="#quote-section" class="submit-btn" style="display: inline-block; max-width: 320px;">실시간 무료 비교 견적 산출하기</a>
+    </div>
+</header>
+
+<nav aria-label="본문 빠른 이동 네비게이션">
+    <div class="nav-inner">
+        <a href="#intro-section">치아교정보험 개요</a>
+        <a href="#coverage-scope">보장 범위 및 약관 분석</a>
+        <a href="#age-cohorts">연령대별 맞춤 가이드</a>
+        <a href="#cost-analysis">비용 및 통계 데이터</a>
+        <a href="#brand-comparison">보험사별 상품 비교</a>
+        <a href="#quote-section">스마트 견적 계산기</a>
+        <a href="#claim-guide">가입 및 청구 절차</a>
+        <a href="#community-insights">커뮤니티 및 여론 동향</a>
+        <a href="#faq-section">자주 묻는 질문(FAQ)</a>
+        <a href="#authority-sources">신뢰할 수 있는 출처</a>
+    </div>
+</nav>
+
+<main class="container">
+
+<section id="intro-section">
+    <h2>2026년 치아교정보험 시장의 변화와 현명한 가입 전략</h2>
+    <p>2026년 현재 국내 헬스케어 시장에서 치아 관련 의료비 부담은 가계 지출의 상당한 비중을 차지하고 있습니다. 과거 단순한 심미적 목적의 성형 시술로 치부되던 <strong>치아교정</strong>은 현대에 이르러 저작 기능 회복, 악관절 질환 예방, 소화기 계통 건강 유지, 그리고 수면무호흡증 완화 등 전신 건강과 직결된 핵심 치과 치료로 재평가받고 있습니다. 이에 따라 주요 손해보험사와 생명보험사에서는 과거 전무했던 <strong>부정교합 치아교정 특약</strong>과 결합형 치아보험 상품을 공격적으로 출시하고 있으며, 다이렉트 채널을 통한 소비자 중심의 상품 비교가 활발히 이루어지고 있습니다.</p>
+    
+    <p>치아교정 치료는 장치 종류(메탈, 세라믹, 클리피씨, 설측, 인비절라인 투명교정 등)와 치료 난이도에 따라 최소 수백만 원에서 천만 원대를 호가하는 고가의 비급여 항목입니다. 따라서 단순한 월 보험료의 저렴함에만 현혹되어 섣불리 가입할 경우, 실제 치료가 필요한 시점에 면책기간(보험금을 지급하지 않는 기간)이나 감액기간(보험금의 일부만 지급하는 기간), 또는 약관상 제외 조항(단순 심미 개선 목적)에 부딪혀 보장을 전혀 받지 못하는 불상사가 발생할 수 있습니다.</p>
+
+    <div class="highlight-box">
+        <strong>2026년 치아교정보험 핵심 포인트</strong>
+        <p>인터넷 및 모바일 다이렉트 전용 상품을 활용하면 오프라인 대면 채널 대비 평균 10퍼센트에서 15퍼센트 수준의 보험료 할인을 적용받을 수 있습니다. 특히 성장기 자녀를 둔 학부모라면 만 4세부터 7세 사이에 1차 턱 성장 조절 치료 및 소아 치아교정 특약을 선제적으로 확보하는 것이 장기적인 의료비 절감의 핵심입니다.</p>
+    </div>
+
+    <div class="grid-container">
+        <div class="info-card">
+            <h4>치료 목적의 부정교합 집중 보장</h4>
+            <p>Angle 2급, 3급 부정교합 판정 및 저작 기능 장애를 유발하는 치열 이상에 대해 진단비 및 단계별 교정 치료 지원금을 체계적으로 지급합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>보존 및 보철 복합 연계 설계</h4>
+            <p>교정 치료 중 빈번히 발생하는 치아우식증(충치), 레진, 인레이, 크라운 치료뿐만 아니라 향후 성인기 임플란트 보장까지 하나의 플랜으로 통합 관리합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>다이렉트 모바일 원스톱 견적</h4>
+            <p>복잡한 서류 제출 없이 스마트폰 앱과 온라인 비교 플랫폼을 통해 1분 만에 3사 이상의 예상 월 보험료와 환급금을 실시간 비교 계산할 수 있습니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>AI 기반 초고속 청구 시스템</h4>
+            <p>치과에서 발급받은 치료계획서와 방사선 사진(파노라마, 세팔로)을 촬영하여 전용 모바일 앱으로 전송하면 인공지능 기반 심사를 통해 24시간 이내 보험금이 지급됩니다.</p>
+        </div>
+    </div>
+</section>
+
+<section id="coverage-scope">
+    <h2>치아교정보험 보장 범위 및 필수 약관 심층 분석</h2>
+    <p>치아보험을 선택할 때 가장 먼저 파악해야 할 핵심은 <strong>국민건강보험 급여 항목</strong>과 <strong>민간 보험사 비급여 특약</strong>의 명확한 차이점입니다. 대한민국 국민건강보험 체계상 순수 미용 목적의 치아교정은 비급여 항목으로 분류되어 전액 환자가 부담해야 합니다. 하지만 구순구개열, 쇄골두개이골증, 악안면 기형 등 희귀난치성 질환에 수반되는 교정이나 외과적 악교정 수술(양악수술)이 필수적인 중증 부정교합의 경우 급여 혜택이 일부 적용됩니다.</p>
+
+    <p>민간 치아보험의 치아교정 특약은 이러한 공적 건강보험의 사각지대를 보완하기 위해 설계되었습니다. 보험사마다 규정하는 질병분류코드(K07.0부터 K07.9까지의 악안면 기형 및 치열 이상)에 부합하는 상태에서 치과의사의 의학적 소견과 정밀 진단 자료가 첨부될 때 특약에 명시된 가입 금액(통상 100만 원에서 최대 500만 원 수준)을 정액 또는 실손 형태로 지원받게 됩니다.</p>
+
+    <div class="table-responsive">
+        <table>
+            <caption>2026년 주요 치아 치료 항목별 국민건강보험 vs 민간 치아교정보험 보장 비교표</caption>
+            <thead>
+                <tr>
+                    <th>치료 구분</th>
+                    <th>세부 치료 항목</th>
+                    <th>국민건강보험 급여 여부</th>
+                    <th>민간 치아보험 보장 범위</th>
+                    <th>비고 및 주의사항</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>예방 및 기본치료</strong></td>
+                    <td>정기 스케일링, 불소도포, 치아 홈메우기(실란트)</td>
+                    <td>스케일링 만 19세 이상 연 1회 급여, 실란트 만 18세 이하 90% 지원</td>
+                    <td>특약 추가 시 통원 일당 및 검진 지원금 추가 지급</td>
+                    <td>기본 구강 건강 관리 필수 항목</td>
+                </tr>
+                <tr>
+                    <td><strong>보존 치료</strong></td>
+                    <td>아말감, 복합레진, 글래스 아이오노머(GI), 인레이, 온레이, 크라운</td>
+                    <td>아말감/GI 급여, 만 12세 이하 영구치 레진 급여 적용</td>
+                    <td>레진, 인레이, 크라운 당 5만 원 ~ 50만 원 정액 보장</td>
+                    <td>교정 전후 충치 발생 시 필수 청구 항목</td>
+                </tr>
+                <tr>
+                    <td><strong>치아교정 치료</strong></td>
+                    <td>소아 1차 턱성장 교정, 영구치 메탈/클리피씨/투명교정</td>
+                    <td>원칙적 비급여 (구순구개열 등 특정 희귀질환만 급여)</td>
+                    <td><strong>부정교합(Angle 2급, 3급) 판정 시 100만 ~ 500만 원 특약 보장</strong></td>
+                    <td>가입 전 단순 심미 목적 시 보장 제외 약관 확인 필수</td>
+                </tr>
+                <tr>
+                    <td><strong>보철 치료</strong></td>
+                    <td>임플란트, 브릿지, 틀니(가철성 의치)</td>
+                    <td>만 65세 이상 평생 2개(임플란트) 본인부담률 30%</td>
+                    <td>영구치 발치 당 임플란트 최대 200만 원 무제한 보장 플랜 존재</td>
+                    <td>교정 중 불가피한 영구치 결손 시 대체 보장</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>약관 분석의 핵심: 면책기간과 감액기간의 정밀 계산</h3>
+    <p>치아보험 가입 후 곧바로 치과에 내원하여 교정 진단을 받고 보험금을 청구하는 역선택을 방지하기 위해, 모든 보험사는 철저한 면책기간(Exclusion Period)과 감액기간(Reduction Period)을 설정해 두고 있습니다. 일반적으로 <strong>면책기간</strong>은 가입일(제1회 보험료 납입일)로부터 90일 또는 180일 동안 유지되며, 이 기간 내에 진단받은 질환에 대해서는 보험금이 일절 지급되지 않습니다.</p>
+
+    <p>또한 <strong>감액기간</strong>은 면책기간 종료 후 1년 또는 2년 이내에 발생한 치료에 대해 약정된 보험금의 50퍼센트만을 감액하여 지급하는 제도입니다. 예를 들어, 부정교합 진단비 특약 300만 원에 가입한 후 1년 6개월 차에 치료를 시작한다면 감액 기준(2년 이내 50%)에 따라 150만 원만 지급될 수 있습니다. 따라서 계획적인 교정 치료를 염두에 두고 있다면 최소 치료 시작 1~2년 전에 선제적으로 가입을 완료하는 것이 가장 경제적인 방법입니다.</p>
+</section>
+
+<section id="age-cohorts">
+    <h2>연령대별 치아교정보험 맞춤 설계 및 세부 타겟 분석</h2>
+    <p>치아 상태와 턱뼈의 성장 발달 단계는 연령대에 따라 천차만별입니다. 따라서 본인의 생애주기 및 구강 건강 단계에 부합하는 정밀한 맞춤 설계를 진행해야 불필요한 보험료 낭비를 막고 실질적인 혜택을 극대화할 수 있습니다. 아래는 대한민국 전 연령층을 망라한 30개 이상의 세부 타겟별 치아교정보험 설계 가이드라인입니다.</p>
+
+    <div class="grid-container">
+        <div class="info-card">
+            <h4>영유아 치아교정보험 (만 0세 ~ 3세)</h4>
+            <p>유치가 맹출하는 시기로 선천성 악안면 기형 여부를 관찰하며, 어린이 종합보험 내 치아 담보를 저렴하게 선점하는 시기입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>소아 치아교정보험 (만 4세 ~ 6세)</h4>
+            <p>유치열 완성기로 반대교합(주걱턱) 조기 징후 발견 시 프랑켈 장치나 페이스마스크 교정 비용을 대비하는 최적기입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>미취학 아동 치아교정보험</h4>
+            <p>손가락 빨기, 혀 내밀기 등 구강 악습관으로 인한 개방교합 발생 위험을 방어하고 1차 예방교정 진단비 특약을 준비합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>초등 저학년 치아교정보험 (1~3학년)</h4>
+            <p>혼합치열기 진입 시기로 영구치가 나올 공간 확보를 위한 악궁 확장 장치 및 공간 유지 장치 비용을 집중 보장합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>초등 고학년 치아교정보험 (4~6학년)</h4>
+            <p>골격성 부정교합 치료의 골든타임으로 1차 턱교정 및 초기 영구치 배열 교정을 위한 고액 특약 설계가 요구됩니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>10대 청소년 치아교정보험</h4>
+            <p>영구치열이 완성되어 본격적인 전체 교정(메탈, 세라믹, 클리피씨)을 가장 활발히 진행하는 시기로 최대 보장 한도를 설정합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>중학생 치아교정보험</h4>
+            <p>급성장기 턱뼈 발달과 맞물려 Angle 2급 무턱이나 3급 주걱턱 교정 시 치료비 지원금을 집중 수령할 수 있도록 구성합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>고등학생 치아교정보험</h4>
+            <p>학업 집중과 심미적 스트레스 완화를 위해 자가결찰 장치(클리피씨, 데이몬) 및 투명교정 비용을 보완하는 플랜을 추천합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>20대 대학생 치아교정보험</h4>
+            <p>사회 진출 전 외모 개선 및 발음 교정을 위한 시기로 다이렉트 무진단형 플랜을 통해 알뜰한 월 납입료로 설계합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>20대 사회초년생 치아교정보험</h4>
+            <p>소득 활동 시작과 함께 심미성이 뛰어난 설측 교정이나 인비절라인 투명교정 비용 부담을 분산시키는 실속형 상품이 인기입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>20대 청년 복합 치아교정보험</h4>
+            <p>교정 중 발생하기 쉬운 잇몸 염증과 충치 레진 치료, 사랑니 발치 보장까지 결합하여 구강 전반을 종합 케어합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>30대 직장인 치아교정보험</h4>
+            <p>잦은 외근과 미팅을 고려한 투명교정 및 설측 부분교정 특약을 구성하고, 치주염 예방 보장을 함께 추가합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>30대 여성 치아교정보험</h4>
+            <p>임신과 출산 전후 잇몸 약화에 대비한 치주 질환 특약과 출산 후 돌출입 교정 및 치열 재정렬 비용을 대비합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>30대 남성 치아교정보험</h4>
+            <p>흡연과 스트레스로 인한 잇몸 치료 및 저작 기능 부조화 개선을 위한 비발치 교정 특약에 집중합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>40대 중년 치아교정보험</h4>
+            <p>노화로 인해 치아가 앞으로 쏠리는 현상(전치부 밀림) 및 잇몸 퇴축 교정을 위한 보철 연계 교정 플랜을 구성합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>40대 남성 치아교정보험</h4>
+            <p>치주염으로 흔들리는 치열을 바로잡고 향후 임플란트 식립 공간을 확보하기 위한 선행 교정 치료비를 지원합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>40대 여성 치아교정보험</h4>
+            <p>심미적 리프팅 효과와 턱관절 통증 완화를 목적으로 하는 부분교정 및 크라운 보철 결합 특약을 설계합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>50대 장년 치아교정보험</h4>
+            <p>임플란트 및 틀니 치료 전 인접 치아의 각도를 바로세우는 직립 교정(Uprighting) 치료비를 보장받는 구조입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>60대 실버 치아교정보험</h4>
+            <p>치아 상실 후 공간 쓰러짐을 방지하고 잔존 영구치 보존을 위한 최소 침습 부분교정 및 보철 유지 관리에 집중합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>성인 치아교정보험 통합 플랜</h4>
+            <p>골격 성장이 끝난 성인의 치아이동 한계를 고려하여 미니스크류, 악교정 수술 연계 특약을 체계적으로 포함합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>부정교합 치아교정보험</h4>
+            <p>위아래 맞물림이 어긋난 Angle 2급(원심교합), 3급(근심교합) 판정 시 진단비와 치료 지원금을 가장 확실하게 수령합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>턱관절 치아교정보험</h4>
+            <p>부정교합으로 촉발된 턱관절 잡음 및 개구장애 완화를 위한 스플린트 장치 및 물리치료 보장을 특약으로 결합합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>클리피씨 치아교정보험</h4>
+            <p>마찰력이 적어 통증이 덜하고 교정 기간을 단축시켜 주는 자가결찰 클리피씨 장치 비용을 효과적으로 상쇄합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>투명교정 인비절라인 보험</h4>
+            <p>특수 강화 플라스틱 소재의 탈부착형 투명교정 장치 사용 시 발생하는 고가의 기공료 및 단계별 진료비를 보완합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>설측교정 전문 치아보험</h4>
+            <p>치아 안쪽에 장치를 부착하여 겉으로 드러나지 않는 최고가 프리미엄 설측 교정의 높은 치료비를 집중 분담합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>세라믹교정 치아교정보험</h4>
+            <p>치아 색상과 유사한 도자기 재질로 메탈보다 심미성이 우수한 세라믹 장치 장착 시 평균 치료비 수준을 맞춥니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>메탈교정 실속 치아보험</h4>
+            <p>가장 대중적이고 내구성이 뛰어난 메탈 브라켓 교정 시 최저 보험료로 최고의 가성비 보장을 설계할 수 있습니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>발치교정 치아교정보험</h4>
+            <p>심한 덧니나 돌출입 해소를 위해 소구치 발치가 동반되는 경우, 영구치 발치 보험금과 교정비를 동시에 청구합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>비발치교정 치아교정보험</h4>
+            <p>치간 삭제(IPR) 및 악궁 확장을 통해 자연치아를 온전히 보존하면서 치열을 바로잡는 비발치 플랜 맞춤형 보장입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>주걱턱 및 돌출입 특화보험</h4>
+            <p>골격적 부조화로 인한 안면 비대칭, 주걱턱, 돌출입 개선을 위한 치과 교정과와 구강악안면외과 협진 치료비를 지원합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>재교정 치아교정보험</h4>
+            <p>과거 교정 후 유지장치 미착용으로 치열이 다시 틀어진 성인을 위한 2차 재교정 치료비와 치간 관리 특약입니다.</p>
+        </div>
+    </div>
+</section>
+
+<section id="cost-analysis">
+    <h2>2026년 장치별 평균 치료 비용 통계 및 보험료 분석</h2>
+    <p>치아교정을 시작하기에 앞서 가장 많은 분들이 고민하는 요소는 <strong>평균 예상 치료 비용</strong>과 <strong>월 납입 보험료의 가성비</strong>입니다. 교정 비용은 장치의 정밀도, 재질, 심미성, 그리고 의료진의 전문성에 따라 상당한 격차를 보입니다. 2026년 전국 치과 병의원 비급여 수가 공시자료를 종합 분석한 결과, 일반 메탈 교정은 평균 350만 원에서 450만 원, 자가결찰 클리피씨는 450만 원에서 600만 원, 투명교정(인비절라인)은 600만 원에서 850만 원, 설측 교정은 800만 원에서 1,200만 원 선으로 형성되어 있습니다.</p>
+
+    <div class="chart-section">
+        <h3>2026년 교정 장치별 평균 비용 지수 비교 (단위: 만 원)</h3>
+        
+        <div class="chart-bar-group">
+            <div class="chart-label">
+                <span>메탈 교정 (기본형)</span>
+                <span>평균 400만 원</span>
+            </div>
+            <div class="chart-progress-bg">
+                <div class="chart-progress-fill" style="width: 40%;"></div>
+            </div>
+        </div>
+
+        <div class="chart-bar-group">
+            <div class="chart-label">
+                <span>세라믹 교정 (심미형)</span>
+                <span>평균 480만 원</span>
+            </div>
+            <div class="chart-progress-bg">
+                <div class="chart-progress-fill" style="width: 48%;"></div>
+            </div>
+        </div>
+
+        <div class="chart-bar-group">
+            <div class="chart-label">
+                <span>클리피씨 자가결찰 (단축형)</span>
+                <span>평균 550만 원</span>
+            </div>
+            <div class="chart-progress-bg">
+                <div class="chart-progress-fill secondary" style="width: 55%;"></div>
+            </div>
+        </div>
+
+        <div class="chart-bar-group">
+            <div class="chart-label">
+                <span>인비절라인 투명교정 (디지털형)</span>
+                <span>평균 750만 원</span>
+            </div>
+            <div class="chart-progress-bg">
+                <div class="chart-progress-fill secondary" style="width: 75%;"></div>
+            </div>
+        </div>
+
+        <div class="chart-bar-group">
+            <div class="chart-label">
+                <span>콤비 및 설측 교정 (완전비노출형)</span>
+                <span>평균 1,000만 원</span>
+            </div>
+            <div class="chart-progress-bg">
+                <div class="chart-progress-fill accent" style="width: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <caption>2026년 연령대별 다이렉트 치아교정보험 평균 월 보험료 및 예상 수령액 비교</caption>
+            <thead>
+                <tr>
+                    <th>연령대 구분</th>
+                    <th>성별</th>
+                    <th>평균 월 보험료 (다이렉트 기준)</th>
+                    <th>부정교합 진단/치료 특약 가입금액</th>
+                    <th>충치/크라운/보철 연계 보장 한도</th>
+                    <th>추천 가입 플랜 유형</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>어린이 (만 5세~10세)</strong></td>
+                    <td>남 / 여 공통</td>
+                    <td>약 18,000원 ~ 28,000원</td>
+                    <td>200만 원 ~ 400만 원</td>
+                    <td>레진 10만 원 / 크라운 20만 원</td>
+                    <td>1차 턱성장 조절 + 예방교정 집중형</td>
+                </tr>
+                <tr>
+                    <td><strong>청소년 (만 11세~18세)</strong></td>
+                    <td>남 / 여 공통</td>
+                    <td>약 25,000원 ~ 38,000원</td>
+                    <td>300만 원 ~ 500만 원</td>
+                    <td>레진 15만 원 / 크라운 30만 원</td>
+                    <td>전체 영구치 교정 + 발치 특약형</td>
+                </tr>
+                <tr>
+                    <td><strong>20대 청년층</strong></td>
+                    <td>남성 / 여성</td>
+                    <td>약 32,000원 ~ 45,000원</td>
+                    <td>150만 원 ~ 300만 원</td>
+                    <td>크라운 40만 원 / 임플란트 150만 원</td>
+                    <td>무진단 실속형 + 심미교정 연계형</td>
+                </tr>
+                <tr>
+                    <td><strong>30대 직장인</strong></td>
+                    <td>남성 / 여성</td>
+                    <td>약 40,000원 ~ 58,000원</td>
+                    <td>100만 원 ~ 200만 원</td>
+                    <td>크라운 50만 원 / 임플란트 200만 원</td>
+                    <td>치주염 케어 + 보철/교정 복합형</td>
+                </tr>
+                <tr>
+                    <td><strong>40대~50대 중장년</strong></td>
+                    <td>남성 / 여성</td>
+                    <td>약 55,000원 ~ 85,000원</td>
+                    <td>50만 원 ~ 100만 원 (부분교정)</td>
+                    <td>임플란트 200만 원 무제한 / 틀니 지원</td>
+                    <td>보철 식립 전 선행 교정 특화형</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section id="brand-comparison">
+    <h2>주요 보험사별 치아교정 특약 및 브랜드 비교 분석</h2>
+    <p>국내 주요 보험사들은 각기 다른 장점과 특색을 지닌 치아보험 상품을 운용하고 있습니다. <strong>라이나생명</strong>, <strong>메리츠화재</strong>, <strong>DB손해보험</strong>, <strong>KB손해보험</strong>, <strong>삼성화재</strong>, <strong>현대해상</strong>, <strong>한화손해보험</strong>, <strong>흥국화재</strong> 등 메이저 브랜드들은 보장 개시일, 감액 기간, 부정교합 판정 기준, 그리고 다이렉트 가입 시 제공하는 할인 혜택에서 차별성을 두고 있습니다.</p>
+
+    <div class="grid-container">
+        <div class="info-card">
+            <h4>메리츠화재 올바른치아보험</h4>
+            <p><strong>장점:</strong> 유치부터 영구치까지 폭넓은 보장, 부정교합 치료비 특약의 높은 가입 한도.<br>
+            <strong>단점:</strong> 갱신 주기별 보험료 인상률을 사전 확인 필요.<br>
+            <strong>추천:</strong> 성장기 자녀의 1차, 2차 교정을 장기적으로 대비하려는 부모님.</p>
+        </div>
+        <div class="info-card">
+            <h4>DB손해보험 참좋은치아사랑보험</h4>
+            <p><strong>장점:</strong> 다이렉트 가입 시 저렴한 보험료, 스케일링 및 충치 레진 치료에 대한 빠른 보상 청구 승인.<br>
+            <strong>단점:</strong> 성인 부정교합 특약 가입 시 심사 기준이 다소 엄격함.<br>
+            <strong>추천:</strong> 20대~30대 사회초년생의 실속형 다이렉트 가입.</p>
+        </div>
+        <div class="info-card">
+            <h4>삼성화재 다이렉트 착한치아보험</h4>
+            <p><strong>장점:</strong> 브랜드 신뢰도 및 모바일 앱 UI의 뛰어난 편의성, 포인트 연계 할인 제도.<br>
+            <strong>단점:</strong> 고액 보철/교정 단독 특약의 가입 금액 상한이 보수적임.<br>
+            <strong>추천:</strong> 안정적인 대형사 보상 시스템과 간편한 모바일 청구를 선호하는 고객.</p>
+        </div>
+        <div class="info-card">
+            <h4>KB손해보험 The드림치아보험</h4>
+            <p><strong>장점:</strong> 임플란트와 교정 치료 결합 시 강력한 보장 패키지 제공, 감액기간 차등 완화 플랜.<br>
+            <strong>단점:</strong> 오프라인 대면 가입 시 사업비 비중이 다소 높음.<br>
+            <strong>추천:</strong> 치주 질환과 교정 치료를 동시에 고려하는 3040 직장인.</p>
+        </div>
+        <div class="info-card">
+            <h4>현대해상 굿앤굿어린이치아보험</h4>
+            <p><strong>장점:</strong> 어린이/청소년 보험 부문 업계 최상위 점유율, 영유아 구강 발달 단계별 맞춤 담보 풍부.<br>
+            <strong>단점:</strong> 성인 전용 전환 시 특약 재구성이 요구됨.<br>
+            <strong>추천:</strong> 태아 및 미취학 아동의 조기 예방교정을 준비하는 가정.</p>
+        </div>
+        <div class="info-card">
+            <h4>라이나생명 THE든든한치아보험</h4>
+            <p><strong>장점:</strong> 국내 치아보험의 원조 격으로 축적된 데이터 기반의 신속 정확한 보험금 지급 프로세스.<br>
+            <strong>단점:</strong> 10년/20년 주기 갱신형 구조에 대한 장기 수지 분석 필요.<br>
+            <strong>추천:</strong> 보존 치료와 충치 케어를 빈번하게 이용하는 전 연령층.</p>
+        </div>
+    </div>
+</section>
+
+<section id="quote-section">
+    <h2>스마트 다이렉트 치아교정보험료 계산 및 견적 신청</h2>
+    <p>본인 또는 자녀의 정확한 나이, 희망 교정 방식, 현재 구강 상태를 입력하시면 2026년 최신 알고리즘을 통해 <strong>가장 저렴한 곳</strong>의 비교 견적서와 특약 분석 리포트를 24시간 이내 비대면으로 제공해 드립니다.</p>
+
+    <div class="form-wrapper">
+        <form action="/submit-quote" method="POST" aria-label="치아교정보험 무료 견적 산출 폼">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="userName">신청자 성함</label>
+                    <input type="text" id="userName" name="userName" placeholder="예: 홍길동" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userPhone">휴대폰 번호 (상담 및 견적서 수신)</label>
+                    <input type="tel" id="userPhone" name="userPhone" placeholder="010-1234-5678" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetAge">피보험자 대상 연령대</label>
+                    <select id="targetAge" name="targetAge" required>
+                        <option value="">연령대 선택</option>
+                        <option value="infant">영유아 및 소아 (만 0세 ~ 6세)</option>
+                        <option value="elem">초등학생 (만 7세 ~ 12세)</option>
+                        <option value="teen">청소년 (만 13세 ~ 18세)</option>
+                        <option value="twenties">20대 청년 및 대학생</option>
+                        <option value="thirties">30대 직장인</option>
+                        <option value="forties">40대 중년층</option>
+                        <option value="fifties_plus">50대 이상 장년/실버</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="orthoType">관심 있는 교정 방식 / 상태</label>
+                    <select id="orthoType" name="orthoType" required>
+                        <option value="">선택하세요</option>
+                        <option value="malocclusion">부정교합 치료 목적 (주걱턱/돌출입)</option>
+                        <option value="clippy">클리피씨 자가결찰 교정</option>
+                        <option value="invisalign">인비절라인 투명교정</option>
+                        <option value="metal_ceramic">일반 메탈 / 세라믹 교정</option>
+                        <option value="lingua">설측 / 콤비 비밀교정</option>
+                        <option value="prevention">소아 1차 턱성장 예방교정</option>
+                        <option value="implant_combine">임플란트 결합형 보철교정</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="brandPref">선호하는 보험사 (중복 선택 가능)</label>
+                    <select id="brandPref" name="brandPref">
+                        <option value="all">전체 보험사 최저가 비교 추천</option>
+                        <option value="meritz">메리츠화재</option>
+                        <option value="db">DB손해보험</option>
+                        <option value="samsung">삼성화재</option>
+                        <option value="kb">KB손해보험</option>
+                        <option value="hyundai">현대해상</option>
+                        <option value="lina">라이나생명</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="priorDental">최근 5년 이내 치과 치료 이력</label>
+                    <select id="priorDental" name="priorDental" required>
+                        <option value="none">치료 이력 없음 (충치/발치 없음)</option>
+                        <option value="simple">단순 스케일링 또는 1~2개 레진 충전</option>
+                        <option value="crown">크라운 또는 신경치료 이력 있음</option>
+                        <option value="perio">치주염(풍치) 치료 또는 발치 이력 있음</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width">
+                    <button type="submit" class="submit-btn">맞춤형 실시간 보험료 계산 결과 받기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="claim-guide">
+    <h2>치아교정보험 가입 및 보험금 청구 완전 정복 가이드</h2>
+    <p>보험에 가입하는 것만큼이나 중요한 것이 바로 <strong>정당한 보험금을 신속하고 누락 없이 수령하는 방법</strong>입니다. 치아보험금 청구 과정에서 소비자들이 가장 많이 겪는 문제는 치과에서 발급하는 진단서 상의 질병코드 누락이나 보험사 사전 고지의무 위반으로 인한 계약 해지 및 지급 거절입니다.</p>
+
+    <h3>가입 전 필수 고지의무(알릴 의무) 체크포인트</h3>
+    <p>상법 제651조에 따른 계약 전 알릴 의무는 치아보험에서 매우 엄격히 적용됩니다. 통상적으로 다음 3가지 사항에 대해 성실히 답해야 합니다.</p>
+    <ol style="margin-left: 25px; margin-bottom: 25px; line-height: 1.9;">
+        <li><strong>최근 3개월 이내:</strong> 의사로부터 진찰 또는 검사를 통해 치과 치료, 수술, 투약 등의 소견을 받은 사실이 있는지 여부.</li>
+        <li><strong>최근 1년 이내:</strong> 충치(치아우식증)로 인해 치료, 투약, 또는 치료 필요 소견을 받은 적이 있는지 여부.</li>
+        <li><strong>최근 5년 이내:</strong> 치주질환(잇몸병, 풍치)으로 인해 영구치를 발치했거나 치주 수술, 잇몸 수술을 받은 이력이 있는지 여부.</li>
+    </ol>
+
+    <h3>보험금 청구 시 필수 구비 서류</h3>
+    <div class="grid-container">
+        <div class="info-card">
+            <h4>치과 치료 확인서</h4>
+            <p>보험사 소정 양식으로, 주치의의 서명과 함께 정확한 한국표준질병사인분류(KCD) 코드(예: K07.2 부정교합, K07.4 치열부정 등)가 기재되어야 합니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>진료기록부 사본 (차트)</h4>
+            <p>초진 환자 기록, 내원 일자별 상세 처치 내역, 장치 부착 일자, 치료 계획 등이 기록된 치과 원본 차트 사본입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>방사선 영상 판독 자료</h4>
+            <p>교정 치료 전후의 치열 상태 및 골격 형태를 증빙하는 파노라마 X-ray 및 측모 두부 방사선 사진(Cephalometric X-ray) 사본 파일입니다.</p>
+        </div>
+        <div class="info-card">
+            <h4>진료비 세부내역서 및 영수증</h4>
+            <p>병원 직인이 날인된 진료비 세부 산출 내역서, 일자별 납부 영수증(카드 전표 또는 현금영수증)이 필요합니다.</p>
+        </div>
+    </div>
+</section>
+
+<section id="community-insights">
+    <h2>온라인 커뮤니티 및 SNS 실제 여론 동향 분석</h2>
+    <p>최근 보험 소비자들은 전통적인 보험 설계사 상담에만 의존하지 않고, <strong>디시인사이드(치아교정 갤러리)</strong>, <strong>보배드림</strong>, <strong>에펨코리아(펨코)</strong> 등 주요 대형 커뮤니티와 <strong>네이버 블로그</strong>, <strong>유튜브</strong>, <strong>인스타그램</strong>, <strong>카카오톡 오픈채팅방</strong>, <strong>토스 어플</strong>을 통해 가감 없는 <strong>내돈내산 실제 후기</strong>와 가성비 <strong>성지 좌표</strong> 정보를 공유하고 있습니다.</p>
+
+    <p>커뮤니티 내 치아교정보험 관련 핵심 여론을 분석해 보면 다음과 같은 트렌드가 뚜렷하게 관찰됩니다.</p>
+    
+    <div class="highlight-box">
+        <strong>커뮤니티 실사용자들의 핵심 팁 요약</strong>
+        <p>1. <strong>가입 타이밍의 중요성:</strong> 교정 치과 첫 방문 상담 전에 반드시 보험 가입을 완료해야 합니다. 초진 차트에 단순 미용 목적이라는 단어가 기재되거나 의사의 부정교합 진단이 먼저 기록되면 이후 가입하는 보험에서는 기왕증(이미 앓고 있는 질환)으로 분류되어 보장이 면책됩니다.<br>
+        2. <strong>AI(제미나이, 챗지피티) 약관 분석 활용:</strong> 복잡한 수십 페이지의 보험 약관을 인공지능 챗봇에 업로드하여 면책 조항과 보장 개시일을 3초 만에 검증하는 스마트 소비자가 급증하고 있습니다.<br>
+        3. <strong>사은품 및 이벤트 체리피킹 주의:</strong> 지나친 현금 지원금이나 상품권 혜택만을 좇아 사업비가 과다하게 책정된 고가의 불필요한 특약에 묶이지 않도록 순수 보장성 다이렉트 설계를 고수하는 것이 이득입니다.</p>
+    </div>
+</section>
+
+<section id="faq-section">
+    <h2>치아교정보험 관련 자주 묻는 질문 (FAQ)</h2>
+    <dl class="faq-list">
+        <dt>Q1. 성인도 치아교정보험에 가입하여 부정교합 보장 혜택을 받을 수 있나요?</dt>
+        <dd>A1. 성인의 경우에도 가입 자체는 가능하지만, 소아/청소년 전용 상품에 비해 가입 한도가 낮거나 심사 기준이 엄격할 수 있습니다. 성인은 순수 심미 목적의 교정이 많기 때문에 의학적 저작 기능 장애(Angle 2급, 3급 부정교합) 소견서가 명확히 발급되는 경우에 한하여 특약 보험금이 지급됩니다. 따라서 충치 보존 치료와 임플란트 보장이 결합된 성인 전용 복합 치아보험을 선택하는 것이 유리합니다.</dd>
+
+        <dt>Q2. 교정 치료 중 충치가 생겼을 때도 치아보험으로 보장받을 수 있나요?</dt>
+        <dd>A2. 네, 완벽히 보장받을 수 있습니다. 교정 장치(브라켓, 와이어)를 장착하고 있으면 음식물이 쉽게 끼어 치아우식증(충치) 발생 확률이 급격히 증가합니다. 이때 발생하는 복합레진 충전, 인레이/온레이, 신경치료 후 크라운 씌우기 치료 등은 치아보험의 일반 보존 치료 담보를 통해 약정된 정액 보험금을 그대로 청구하여 수령할 수 있습니다.</dd>
+
+        <dt>Q3. 무진단형 치아보험과 진단형 치아보험의 결정적 차이점은 무엇인가요?</dt>
+        <dd>A3. 무진단형은 치과 검진 없이 전화나 인터넷 설문(고지의무)만으로 간편하게 가입하는 방식으로 대다수 소비자가 선택하지만, 면책기간(90일)과 감액기간(1~2년 50%)이 적용됩니다. 반면 진단형은 가입 전 치과 검진을 통해 구강 상태를 확인받고 가입하므로 가입 즉시 100% 보장이 개시되고 보장 한도가 크지만, 가입 심사가 까다롭고 보험료가 상대적으로 높습니다.</dd>
+
+        <dt>Q4. 교정 치료가 끝난 후 유지장치(리테이너) 비용도 보험 청구가 가능한가요?</dt>
+        <dd>A4. 대부분의 보험 약관상 치열 교정 완료 후 착용하는 가철식/고정식 유지장치 제작 비용은 교정 치료의 부수적 사후 관리로 분류되어 별도의 독립 보험금이 지급되지 않는 경우가 많습니다. 다만 최초 부정교합 치료비 정액 지원 특약에 총 치료비 명목으로 포함되어 일괄 지급되는 플랜이 있으므로 가입 상품의 세부 약관을 대조해야 합니다.</dd>
+
+        <dt>Q5. 다이렉트 치아보험과 설계사를 통한 대면 가입 중 어느 쪽이 더 저렴한가요?</dt>
+        <dd>A5. 다이렉트(온라인/모바일) 가입이 통상 10~15% 이상 저렴합니다. 설계사 수수료와 지점 운영비 등 중간 유통 마진이 절감되기 때문입니다. 보장 내용과 약관이 동일하다면 공식 다이렉트 사이트나 공인 비교 플랫폼을 통해 스스로 설계하여 가입하는 것이 가장 알뜰한 방법입니다.</dd>
+    </dl>
+</section>
+
+<section id="authority-sources">
+    <h2>신뢰할 수 있는 공식 정보 출처 및 법적 고지</h2>
+    <p>본 가이드는 공인된 치과 의학 학술 자료, 보건복지부 고시, 금융감독원 표준 약관 및 공공 데이터베이스를 기반으로 작성되었습니다. 치아교정 치료 및 보험 계약 체결 전 아래의 공신력 있는 공식 기관 사이트를 통해 추가적인 제도적 규정과 학술 정보를 확인하실 수 있습니다.</p>
+    
+    <ul class="reference-list">
+        <li>
+            <div>
+                <strong>ReliableDone 종합 보험 가이드 센터</strong>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0;">2026년 최신 민간 치아보험 특약 및 보장 약관 공시 분석 포털</p>
+            </div>
+            <a href="https://dentalbestibohuma.directreliable.com" target="_blank" rel="noopener noreferrer">공식 가이드 확인</a>
+        </li>
+        <li>
+            <div>
+                <strong>나무위키 치아교정 의학 개요 및 분류 체계</strong>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Angle 부정교합 1, 2, 3급 분류법 및 교정 장치별 상세 백과 정보</p>
+            </div>
+            <a href="https://namu.wiki/w/%EC%B9%98%EC%95%84%EA%B5%90%EC%A0%95" target="_blank" rel="noopener noreferrer">정보 열람</a>
+        </li>
+        <li>
+            <div>
+                <strong>국민건강보험공단 (NHIS)</strong>
+                <p style="font-size: 0.85rem; color: #64748b; margin: 0;">국내 치과 의료 급여 기준 및 희귀질환 산정특례 보장성 안내</p>
+            </div>
+            <a href="https://www.nhis.or.kr/" target="_blank" rel="noopener noreferrer">공식 포털 바로가기</a>
+        </li>
+    </ul>
+</section>
+
+</main>
+
+  
